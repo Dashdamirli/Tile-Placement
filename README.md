@@ -5,11 +5,10 @@ The tile placement problem requires us to place the el,outer or full block shape
 First thing we have to define is our variables, their domains and constraints we have to enforce on those variables. Instead of looking at the landscape one bush at a time, we will look at it as a list of 4x4 squares to make it easier to assign tiles to them. So, our variables will be those squares for which we have to assign values which are the appropriate tile shapes. 
 
 We will have two types of constraints: 
-<ul>
-  <li>Number of tile shapes we have placed should not exceed available tiles
-  <li>Number of visible bushes by color should not exceed given targets
-<ul>
+* Number of tile shapes we have placed should not exceed available tiles
+* Number of visible bushes by color should not exceed given targets
   
+
 Instead of calculating how many bushes there are for each color and then subtracting from respective counts as we ‘cover’ bushes, I decided to initially assign zero to each colored bush and add visible bush count as the tiles are placed. 
 
 Now we have to decide in which order we will traverse the landscape. Does that even matter? Turns out it does. At first, I tried going in order but it solved one of the input files in approximately 35 seconds. Not bad, but the landscape here is only 20x20, so it needed improvement. Then I decided to sort squares by the number of visible bushes they contain in descending order. By doing that we allow faster convergence, therefore faster execution. This method solved that same problem in under 3 seconds which is more than 10 times faster.
